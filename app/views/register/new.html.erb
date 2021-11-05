@@ -1,0 +1,26 @@
+<h1>Inscris-toi mon cochon</h1>
+
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+
+  <%= label_tag 'Prénom' %>
+  <%= text_field_tag 'first_name', @user_first_name%>
+  <br /> <br />
+
+  <%= label_tag 'nom' %>
+  <%= text_field_tag 'last_name', @user_last_name%>
+  <br /> <br />
+
+  <%= label_tag 'email' %>
+  <%= text_field_tag 'email', @user_email %>
+  <br /> <br />
+
+  <%= label_tag 'mot de passe' %>
+  <%= password_field_tag 'password', @user_password_digest%>
+  <br /> <br />
+
+ 
+
+  <%= submit_tag "S'inscrire" %>
+
+<% end %>

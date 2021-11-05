@@ -1,0 +1,36 @@
+<% require_relative '../../models/gossip.rb' %>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+  </head>
+  <body>
+ 
+  <div class="jumbotron">
+      <h1 class="display-4">Bienvenue sur The Gossip Project!</h1>
+      <p class="lead">Tu trouveras ci-dessous la liste de tous les potins, n'hésite pas à intéragir avec.<br/> Et si jamais tu veux créer ton propre potin <a href="<%=new_gossip_path%>" target = blank>clique ici</a></p>
+  </div>
+
+    <h2> La liste des potins </h2>
+
+<div class = "d-inline-flex flex-wrap justify-content-around align-self-stretch">
+<%
+@all_gossips_array.each do |gossip| %>
+<div class="card m-3" style="width: 18rem;">
+  <div class="card-body ">
+<h5 class="card-title"> <%= gossip.title %></h5>
+<% author_name = gossip.find_author_name %>
+<h6> de: <%= author_name %> </h6>
+<p class="card-text"> <%= gossip.content %></p> 
+<a class="btn btn-light" href="<%= gossip_path(gossip.id)%>" role="button">Voir les détails du potin</a>
+
+  </div>
+</div>
+
+<% end %>
+</div>
+
+
+    </body>
+    </html>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  </head>
+<h1>Tu veux en voir plus ? </h1>
+  <body>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%=@gossip_title%></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%=@gossip_author%></h6>
+          <p class="card-text"><%=@gossip_content%></p>
+          <a class="btn btn-light" href="<%=profile_path(@gossip_author_id)%>">Voir le profil de l'auteur</a>
+          <a class="btn btn-light" href="<%= city_path%>"button">Voir la ville de l'auteur</a>
+            <%if current_user.first_name == @gossip_author%>
+              <a class="btn btn-light" href="<%= edit_gossip_path%>"button">Editer le gossip</a>
+              <a class="btn btn-light" href="<%= gossip_path(@gossip.id)%>"button" data-confirm="T'es sûr de ton coup ?" data-method="delete">Supprimer le gossip</a>
+              <%else%> 
+            <% end %> 
+      </div>
+      </div>
+
+      <br /> <br />
+
+      <h2> Et là tu peux laisser un commentaire </h2>
+      </br>
+      <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+        <%= label_tag 'Prénom' %>
+        <%= text_field_tag 'prénom'%>
+        <br /> <br />
+      
+        <%= label_tag 'Commentaire' %>
+        <%= text_area_tag 'commentaire' %>
+        <br /> <br />
+      
+        <%= submit_tag "Envoyer ton com" %>
+      
+        <% end %>
+
+        <br />
+        <h2> Et ici tous les commentaires rattachés à ce gossip </h2>
+        
+  </body>
+</html>
